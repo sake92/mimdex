@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mimdex - Memes index</title>
+  <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css">
+</head>
+
+<body>
+  <div class="container" id="app">
+    <h1 class="title">
+      Search memes:
+    </h1>
+
+
+    <input v-model="searchTerm" type="text" class="input">
+    <hr>
+
+    <div class="tile is-ancestor">
+      <div v-for="item in results" :key="item.id" class="tile is-parent is-3">
+        <article class="tile is-child box">
+
+          <p class="title is-4">{{ item.title }}</p>
+          <p class="subtitle">{{ item.description }}</p>
+          <div>
+            <figure class="image" style="width: 100%">
+              <img v-bind:src="'images/' + item.imgUrl">
+            </figure>
+          </div>
+        </article>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="./esIndex.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
